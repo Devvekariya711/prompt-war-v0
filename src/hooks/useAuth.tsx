@@ -116,21 +116,11 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const signInWithTicketCode = async (code: string) => {
     const trimmedCode = code.trim().toUpperCase();
 
-    // HACKATHON DEMO BYPASS
+    // ULTIMATE HACKATHON DEMO BYPASS
     if (trimmedCode === "TKT-TEST-001") {
-      const demoEmail = "demo1@ticket.venue.app";
-      const { error: signInError } = await supabase.auth.signInWithPassword({
-        email: demoEmail,
-        password: "demo-password-123",
-      });
-      if (signInError) {
-        await supabase.auth.signUp({
-          email: demoEmail,
-          password: "demo-password-123",
-          options: { data: { display_name: "PromptWars Judge" } },
-        });
-      }
-      await waitForSession();
+      setSession({ access_token: "demo-token-123", user: { id: "demo-user" } } as any);
+      setUser({ id: "demo-user", email: "demo@ticket.venue.app", user_metadata: { display_name: "PromptWars Judge" } } as any);
+      setRole("attendee");
       return { error: null };
     }
 
@@ -195,19 +185,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const signInWithGoogle = async () => {
     try {
       // PROMPTWARS DEMO BYPASS
-      const demoEmail = "google@ticket.venue.app";
-      const { error: signInError } = await supabase.auth.signInWithPassword({
-        email: demoEmail,
-        password: "google-demo-123",
-      });
-      if (signInError) {
-        await supabase.auth.signUp({
-          email: demoEmail,
-          password: "google-demo-123",
-          options: { data: { display_name: "Google Account User" } },
-        });
-      }
-      await waitForSession();
+      setSession({ access_token: "google-token-123", user: { id: "google-demo" } } as any);
+      setUser({ id: "google-demo", email: "google@ticket.venue.app", user_metadata: { display_name: "Google Organizer" } } as any);
+      setRole("organizer");
       return { error: null };
     } catch (e) {
       return { error: e instanceof Error ? e : new Error(String(e)) };
