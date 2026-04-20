@@ -1,57 +1,78 @@
 <div align="center">
-  <img src="docs/favicon.svg" alt="Antigravity Logo" width="100" />
+  <img src="docs/favicon.svg" alt="Antigravity Logo" width="120" />
+
+  <h1>🏟️ VenueFlow</h1>
+  <p><strong>Physical Event Experience Reimagined</strong></p>
+  <p><em>Official Submission for PromptWars: The Ultimate AI Challenge by Google</em></p>
+  
+  <p>
+    <img src="https://img.shields.io/badge/Google_Gemini-8E75B2?style=for-the-badge&logo=googlebard&logoColor=white" alt="Gemini AI" />
+    <img src="https://img.shields.io/badge/Google_Cloud-4285F4?style=for-the-badge&logo=googlecloud&logoColor=white" alt="Google Cloud" />
+    <img src="https://img.shields.io/badge/Firebase_Analytics-FFCA28?style=for-the-badge&logo=firebase&logoColor=black" alt="Firebase" />
+    <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React" />
+    <img src="https://img.shields.io/badge/Vitest-Coverage_Tested-729B1B?style=for-the-badge&logo=vitest&logoColor=white" alt="Vitest" />
+  </p>
 </div>
 
-<h1 align="center">VenueFlow: Physical Event Experience Reimagined</h1>
-<p align="center"><em>Submission for PromptWars: The Ultimate AI Challenge by Google</em></p>
+<br/>
 
-## 🎯 Chosen Vertical: Physical Event Experience
-
-**Challenge:** "Design a solution that improves the physical event experience for attendees at large-scale sporting venues. The system should address challenges such as crowd movement, waiting times, and real-time coordination, while ensuring a seamless and enjoyable experience."
-
-### The Problem
-Large-scale events (summits, concerts, sporting events) are plagued by navigational confusion, bottlenecked crowd movements at gates/food zones, and poor real-time attendee communication. Attendees often miss sessions because they can't find the location or get stuck in unexpected lines.
-
-### Our Solution
-**VenueFlow** is a comprehensive, AI-powered progressive web app designed to act as the ultimate "Event Copilot." 
-
-1. **Intelligent Crowd Mapping:** VenueFlow visualizes the entire event floor plan. Zones (Domes, Gates, Food areas) are color-coded based on live crowd density (Green = Clear, Red = Crowded).
-2. **Context-Aware Generative AI:** Integrated natively with **Google's Gemini 3.1- Flash-preview**, the built-in Event Assistant doesn't just answer generic questions—it reads the live schedule and zone data to provide hyper-accurate, contextual responses about event locations, next sessions, and where to go to avoid crowds.
-3. **Emergency SOS & Navigation:** Attendees can get instant walking directions (eta + steps) to less-crowded zones or dispatch an SOS alert directly to marshals.
+> **🎯 Chosen Vertical: Physical Event Experience**  
+> *"Design a solution that improves the physical event experience for attendees at large-scale sporting venues. The system should address challenges such as crowd movement, waiting times, and real-time coordination."*
 
 ---
 
-## 📸 Application Demo
+## 🚀 The Core Problem & Our Solution
+Large-scale events are plagued by navigational confusion, bottlenecked crowd movements, and poor reactive communication. Attendees miss vital sessions because they get stuck in unexpected lines.
 
-### Full Video Walkthrough
+**VenueFlow** acts as the ultimate **"Event Copilot."**
+
+✨ **Intelligent Crowd Mapping:** Visualizes the entire event floor plan in real-time. Zones are color-coded based on live crowd density (Green = Clear, Red = Crowded).  
+✨ **Context-Aware Generative AI:** Integrated natively with **Google Gemini 1.5 Flash**, the built-in Event Assistant reads live schedule and zone data to provide hyper-accurate, contextual responses.  
+✨ **Emergency SOS & Navigation:** Attendees get instant walking directions to clear zones or dispatch an SOS alert directly to marshals.  
+
+---
+
+## 📸 Application Showcase
+
+### 🎥 Full Video Walkthrough
 *(Click to play WebP demonstration of Login, Live Map Navigation, and Gemini AI interaction)*
-![VenueFlow App Demo](./docs/demo.webp)
 
-### Key Screens
+<div align="center">
+  <a href="./docs/demo.webp">
+    <img src="./docs/demo.webp" alt="VenueFlow App Demo" width="800" />
+  </a>
+</div>
+
+### 🎨 Interface Highlights
 
 | Live Venue Flow Map & Navigation | Context-Aware Gemini AI Assistant |
 | :---: | :---: |
-| ![Live Map](./docs/map.png) | ![Gemini Chat](./docs/ai.png) |
+| <img src="./docs/map.png" alt="Live Map" width="400" /> | <img src="./docs/ai.png" alt="Gemini Chat" width="400" /> |
 
 ---
 
-## 🛠️ Approach and Logic
+## ⚡ Technical Architecture & Implementation
 
-1. **Architecture:** A fast, client-side React (Vite) application utilizing `shadcn/ui` for a premium, accessible interface.
-2. **Real-time Engine:** Custom React Hooks (`useZones`, `useSessions`) synchronize database payloads across the entire app layer instantly via WebSockets, ensuring if a gate closes, the UI universally updates right away.
-3. **Generative AI Injection:** The `AIChatWidget` transparently injects live venue data into the Gemini prompt payload before it hits Google's servers. **Logic:** *User asks Question -> App intercepts and injects \{Current Zones + Schedule\} -> Gemini reasons over data -> Gemini answers.*
+VenueFlow is built to be fast, scalable, and resilient.
 
-### Assumptions Made
-- Venues possess IoT sensors (like turnstiles or thermal cameras) to estimate crowd density percentages in real-time, feeding our `crowdPct` parameters.
-- Attendees use mobile devices, prioritizing a "Bottom Navigation" UI over desktop layouts. 
+* **Client-Side Framework:** A Progressive Web App built with React (Vite) and `shadcn/ui` for a premium, accessible mobile-first interface.
+* **Real-time Synchronization Engine:** Custom React Hooks synchronize database payloads flawlessly via WebSockets. If a gate closes, the UI updates universally for all attendees instantly.
+* **Generative AI Injection Loop:** The application transparently intercepts user questions, injects live venue data into the prompt payload securely, and passes it to Google's servers. *Logic: `User Question -> App Context Injection {Live Zones + Schedule} -> Gemini Analysis -> Accurate Answer.`*
+* **Test Coverage:** Comprehensive testing suite powered by **Vitest** ensuring critical hooks, auth layers, and Map components fall back safely.
+
+---
 
 ## ☁️ Google Services Integration
 
-1. **Google Gemini API (`@google/generative-ai`):** Powers the core contextual decision-making of the Assistant. Utilizing the fast and lightweight `gemini-1.5-flash-latest` model to ensure mobile data users aren't bottlenecked by slow AI streams.
-2. **Google Cloud Run:** The application is completely containerized (using our provided `Dockerfile` and `nginx.conf`) and built specifically to be deployed scalably on Google Serverless Cloud Run.
+VenueFlow fully leverages Google's global infrastructure:
+
+1. 🧠 **Google Gemini API:** Utilizes the lightweight `gemini-1.5-flash-latest` model to ensure mobile data users experience zero delay in AI decision-making. Responses stream instantly.
+2. 🚀 **Google Cloud Run:** The application is 100% containerized (`Dockerfile` + `nginx.conf`) and deployed frictionlessly via serverless Google Cloud Run.
+3. 📊 **Google Firebase:** Embedded initial Firebase Analytics initialization hooks to track user engagement and emergency app flow metrics effortlessly.
 
 ---
-**Author:** Dev Vekariya  
-**Connect on LinkedIn:** [dev-vekariya-630544402](https://www.linkedin.com/in/dev-vekariya-630544402/)
-
-*Built with ❤️ for Google PromptWars 2026*
+<div align="center">
+  <strong>Author:</strong> Dev Vekariya <br/>
+  <a href="https://www.linkedin.com/in/dev-vekariya-630544402/">Connect with me on LinkedIn</a> <br/><br/>
+  <em>Built with ❤️ and ☕ for Google PromptWars 2026</em>
+</div>
