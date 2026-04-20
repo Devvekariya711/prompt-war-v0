@@ -56,9 +56,11 @@ VenueFlow is built to be fast, scalable, and resilient.
 
 VenueFlow fully leverages Google's global infrastructure:
 
-1. 🧠 **Google Gemini API:** Utilizes the lightweight `gemini-3.1-flash-preview` model to ensure mobile data users experience zero delay in AI decision-making. Responses stream instantly.
+1. 🧠 **Google Gemini API:** Utilizes the lightweight `gemini-1.5-flash-latest` model to ensure mobile data users experience zero delay in AI decision-making. Responses stream instantly.
 2. 🚀 **Google Cloud Run:** The application is 100% containerized (`Dockerfile` + `nginx.conf`) and deployed frictionlessly via serverless Google Cloud Run.
-3. 📊 **Google Firebase:** Embedded initial Firebase Analytics initialization hooks to track user engagement and emergency app flow metrics effortlessly.
+3. 📊 **Google Firebase:** Embedded Firebase Analytics initialization hooks to track user engagement and emergency app flow metrics effortlessly.
+4. 🗺️ **Google Maps SDK:** Integrated the `@vis.gl/react-google-maps` package natively to render the local geographical region around the venue directly inside the user dashboard.
+5. 🔐 **Google Authentication:** Fully wired up to natively support OAuth "Sign in with Google" flows to rapidly onboard Event Organizers into the administrative layers.
 
 ---
 <div align="center">
