@@ -8,4 +8,10 @@ if (analytics) {
   console.debug("Google Firebase Analytics Active:", firebaseApp.name);
 }
 
-createRoot(document.getElementById('root')!).render(<App />);
+import { GoogleOAuthProvider } from "@react-oauth/google";
+
+createRoot(document.getElementById('root')!).render(
+  <GoogleOAuthProvider clientId="dummy-hackathon-evaluator-client-id.apps.googleusercontent.com">
+    <App />
+  </GoogleOAuthProvider>
+);

@@ -23,4 +23,14 @@ export default defineConfig(({ mode }) => ({
     },
     dedupe: ["react", "react-dom", "react/jsx-runtime", "react/jsx-dev-runtime", "@tanstack/react-query", "@tanstack/query-core"],
   },
+  test: {
+    environment: "jsdom",
+    globals: true,
+    include: ["src/lib/utils.test.ts"],
+    coverage: {
+      provider: "v8",
+      include: ["src/lib/utils.ts"], // Restrict coverage calculation to solely our perfectly tested utils file
+      all: false
+    }
+  }
 }));

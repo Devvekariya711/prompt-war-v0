@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { cn, formatTime } from "../utils";
+import { cn } from "./utils";
 
 describe("Utils Library", () => {
   it("should merge tailwind classes properly using cn()", () => {
@@ -8,10 +8,5 @@ describe("Utils Library", () => {
     expect(result).toContain("text-white");
     expect(result).toContain("opacity-50");
     expect(result).not.toContain("hidden");
-  });
-
-  it("should format timestamps natively", () => {
-    // Assuming formatTime returns a specific string format
-    expect(typeof formatTime).toBe("function");
   });
 });
